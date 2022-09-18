@@ -44,6 +44,10 @@ const call = (phone: string) => {
   a.href = `tel:${phone}`
   a.click()
 }
+
+const open = (url: string) => {
+  window.open(url, '_blank')
+}
 </script>
 
 <template>
@@ -54,21 +58,21 @@ const call = (phone: string) => {
           <div i-carbon-rule inline-block text-2xl text-blue-700 dark:text-white />
         </div>
         <div>
-          <div font-black text-zinc-800 dark:text-white text-lg>
+          <div font-black text-zinc-800 dark:text-white text-xl>
             中国教育部门网站导航
           </div>
-          <div text-zinc-500 text-lg dark:text-zinc-400>
-            新增违反“双减”政策投诉板块
+          <div text-zinc-500 text-md dark:text-zinc-400>
+            维护权益，勇于监督，勇于投诉。
           </div>
         </div>
       </div>
       <div p-5>
         <div grid grid-cols-2 gap-3>
           <div v-for="(item, i) in word" :key="i" text-center>
-            <div font-bold text-lg text-zinc-500 pb-1>
+            <div font-bold text-lg text-zinc-500 pb-1 dark:text-zinc-400>
               {{ item.title }}
             </div>
-            <div font-black text-2xl text-zinc-800>
+            <div font-black text-2xl text-zinc-800 dark:text-white>
               {{ item.text }}
             </div>
           </div>
@@ -78,7 +82,7 @@ const call = (phone: string) => {
     <div my-8 />
     <Card>
       <div px-5 py-3 flex items-center gap-2>
-        <div i-carbon-circle-dash text-zinc-400 />
+        <div i-carbon-chat text-zinc-400 />
         <div font-black text-zinc-800 dark:text-white text-lg>
           公告
         </div>
@@ -87,19 +91,19 @@ const call = (phone: string) => {
         <div text-red>
           纪检监察机关应当建立健全检举控告保密制度，严格落实保密要求！
         </div>
-        <div>优先选择省级举报</div>
+        <div>优先选择省级举报（省级举报->12345举报->详细市区）</div>
       </div>
     </Card>
     <div my-8 />
     <Card>
       <div px-5 py-3 flex items-center gap-2>
-        <div i-carbon-circle-dash text-zinc-400 />
+        <div i-carbon-data-refinery text-zinc-400 />
         <div font-black text-zinc-800 dark:text-white text-lg>
           快捷链接
         </div>
       </div>
       <div p-5 grid grid-cols-2 gap-2>
-        <div v-for="(item, i) in links" :key="i" border-2 border-zinc-100 hover:border-blue-500 transition p-3 rounded-lg dark:border-zinc-700>
+        <div v-for="(item, i) in links" :key="i" border-2 border-zinc-100 hover:border-blue-500 transition p-3 rounded-lg dark:border-zinc-700 cursor-pointer @click="open(item.url)">
           <div h-12 w-12 rounded-full flex items-center justify-center mb-3 :class="item.bg_color ? item.bg_color : 'bg-gray-100 dark:bg-zinc-700'">
             <div :class="[item.icon, item.bg_color ? 'text-white' : 'text-zinc-500 ']" inline-block text-2xl dark="text-white" />
           </div>
@@ -115,7 +119,7 @@ const call = (phone: string) => {
     <div my-8 />
     <Card>
       <div px-5 py-3 flex items-center gap-2>
-        <div i-carbon-circle-dash text-zinc-400 />
+        <div i-carbon-phone text-zinc-400 />
         <div font-black text-zinc-800 text-lg dark:text-white>
           相关热线
         </div>
@@ -146,13 +150,13 @@ const call = (phone: string) => {
     <div my-8 />
     <Card>
       <div px-5 py-3 flex items-center gap-2>
-        <div i-carbon-circle-dash text-zinc-400 />
+        <div i-carbon-earth text-zinc-400 />
         <div font-black text-zinc-800 text-lg dark:text-white>
           省级在线投诉
         </div>
       </div>
       <div p-5 grid grid-cols-2 gap-2>
-        <div v-for="(item, i) in links_12345" :key="i" border-2 border-zinc-100 hover:border-blue-500 transition p-3 rounded-lg dark:border-zinc-700>
+        <div v-for="(item, i) in links_12345" :key="i" border-2 border-zinc-100 hover:border-blue-500 transition p-3 rounded-lg dark:border-zinc-700 cursor-pointer @click="open(item.url)">
           <div h-12 w-12 rounded-full flex items-center justify-center mb-3 :class="item.bg_color ? item.bg_color : 'bg-gray-100 dark:bg-zinc-700'">
             <div :class="[item.icon, item.bg_color ? 'text-white' : 'text-zinc-500 ']" inline-block text-2xl dark="text-white" />
           </div>
